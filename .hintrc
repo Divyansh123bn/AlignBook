@@ -11,5 +11,8 @@
     "not firefox <= 127",
     "not safari <= 17.5",
     "not samsung <= 25"
-  ]
+  ],
+  "hints": {
+    "axe/name-role-value": "off"
+  }
 }

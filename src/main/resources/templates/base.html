@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html class="light" lang="en" th:fragment="parent(content,title,script)" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:replace="${title}">Document</title>
+    <link rel="stylesheet" data-th-href="${'/css/output.css'}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <!-- font-awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="dark:bg-gray-900 dark:text-white">
+
+    <!-- Header -->
+   <div data-th-replace="navbar :: navbar"></div>
+    <!-- Main Content -->
+    <div data-th-replace="${content}"></div>
+    <!-- Footer -->
+    <Footer class="p-4">Footer : Learn With Divyansh </Footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script> 
+    <script data-th-src="@{/js/script.js}"></script>
+    <div th:block th:replace="${script}"></div>
+</body>
+</html>

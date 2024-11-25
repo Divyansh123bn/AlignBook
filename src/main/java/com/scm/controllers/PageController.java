@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class PageController {
 
+    // Home maping
     @RequestMapping("/home")
     public String home(Model model){
         model.addAttribute("name", "Divyansh Singh Solanki");
@@ -27,4 +28,23 @@ public class PageController {
         System.out.println("Service page Opened");
         return "services";
     }
+
+    //contact
+    @RequestMapping("/contact")
+    public String contact(){
+        return "contact";
+    }
+
+    //register
+    @RequestMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    //login
+    @RequestMapping("/login")
+    public String login(){
+        return "login";
+    }
+
 }
