@@ -9,14 +9,14 @@
     <!-- font-awesome link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body class="dark:bg-gray-900 dark:text-white">
+<body class="dark:bg-gray-900 dark:text-white bg-gray-100">
 
     <!-- Header -->
-   <div data-th-replace="navbar :: navbar"></div>
+   <div data-th-replace="~{navbar :: navbar}"></div>
     <!-- Main Content -->
-    <div data-th-replace="${content}"></div>
+    <div th:replace="${content}"></div>
     <!-- Footer -->
-    <Footer class="p-4">Footer : Learn With Divyansh </Footer>
+    <!-- <Footer class="p-4">Footer : Learn With Divyansh </Footer> -->
 
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script> 
     <script data-th-src="@{/js/script.js}"></script>
