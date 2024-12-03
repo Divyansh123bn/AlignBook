@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+</head>
+<body>
+    <div id="content">
+        <!-- user LoggedIn :sideBar -->
+        <div data-th-if="${LoggedInUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-32" style="height: 1000px;">
+           <div class="grid grid-cols-12">
+            <div class="col-span-3"></div>
+            <div class="col-span-12 md:col-span-6 mb-10">
+                <div class="card block  p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                    <h1 class="text-2xl font-semibold">Add new Contact</h1>
+                    <p class="text-gray-500">This contact will be stored in cloud storage.</p>
+                    <!-- Contact form -->
+                    <form data-th-action="@{'/user/contacts/add'}" data-th-object="${contactForm}" method="post" class="mt-5">
+                        <!-- name -->
+                        <div class="mb-3">
+                            <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Name</label>
+                            <div class="relative mb-6">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+                            <input type="text" data-th-field="*{name}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Contact Name">
+                            </div>
+                        </div>
+                        <!-- email -->
+                        <div class="mb-3">
+                            <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                            <div class="relative mb-6">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-regular fa-envelope"></i>
+                            </div>
+                            <input type="text" data-th-field="*{email}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="contact@gmail.com">
+                            </div>
+                        </div>
+                        <!-- phoneNumber -->
+                        <div class="mb-3">
+                            <label for="input-group-1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                            <div class="relative mb-6">
+                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <input type="text" data-th-field="*{phoneNumber}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="9876543210">
+                            </div>
+                        </div>
+                        <!-- address -->
+                         <div class="mb-3">  
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                            <textarea data-th-field="*{address}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Contact Address here.."></textarea>
+                         </div>
+                         <!-- Description -->
+                         <div class="mb-3">  
+                            <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                            <textarea data-th-field="*{description}" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Something about Contact"></textarea>
+                         </div>
+                         <!-- social links -->
+                          <div class="flex space-x-3 mb-3">
+                            <div class="w-full">
+                                <div class="mb-3">
+                                    <!-- instagram -->
+                                    <div class="relative mb-6">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </div>
+                                    <input type="text" data-th-field="*{websiteLink}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://instagram/profile/link">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <div class="mb-3">
+                                    <!-- linkedin -->
+                                    <div class="relative mb-6">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </div>
+                                    <input type="text" data-th-field="*{linkedInLink}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="https://linkedIn/profile/link">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <!-- Profile-picture -->
+                           
+                        <div class="flex items-center justify-center w-full mb-4">
+                            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ">
+                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                    </svg>
+                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                    <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                </div>
+                                <input  type="file" class="hidden" />
+                            </label>
+                        </div> 
+
+                          <!-- checkboxes -->
+                          <div class="flex items-center mb-4">
+                            <input data-th-field="*{favourite}" type="checkbox"  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="favourite" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is this Contact is your Favourite?</label>
+                        </div>
+                        <!-- Submit Button -->
+                         <div class="button_Container text-center">
+                            <button type="submit" class="p-2 bg-gray-800 text-white rounded-lg hover:bg-gray-600 dark:bg-blue-600 dark:hover:bg-blue-800">
+                                Add Contact
+                            </button>
+                            <button type="reset" class="p-2 bg-gray-800 text-white rounded-lg hover:bg-gray-600 dark:bg-blue-600 dark:hover:bg-blue-800">
+                                Reset
+                            </button>
+                         </div>
+                    </form>
+                </div>
+            </div>
+           </div>
+        </div>
+    </div>
+    <script>
+        console.log("This is Dashboard page");
+    </script>
+</body>
+</html>
