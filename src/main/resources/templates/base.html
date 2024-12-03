@@ -11,8 +11,16 @@
 </head>
 <body class="dark:bg-gray-900 dark:text-white bg-gray-100">
 
-    <!-- Header -->
-   <div data-th-replace="~{navbar :: navbar}"></div>
+    <!-- user Loggedin :Navabr -->
+   <div data-th-if="${LoggedInUser}">
+    <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+   </div>
+
+   
+   <!-- user not LoggedIn :Navbar -->
+   <div data-th-unless="${LoggedInUser}">
+    <div data-th-replace="~{navbar :: navbar}"></div>
+   </div>
     <!-- Main Content -->
     <div th:replace="${content}"></div>
     <!-- Footer -->

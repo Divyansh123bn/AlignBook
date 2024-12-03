@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title data-th-text="${LoggedInUser.name}+' | ALignBook'"></title>
 </head>
 <body>
-    <h1>This is profile page</h1>
+
+    <div id="content">
+
+        <!-- user LoggedIn :sideBar -->
+        <div data-th-if="${LoggedInUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+
+
+        <div class="sm:pl-64 pt-32" style="height: 1000px;">
+            <h1 class="text-5xl flex justify-center">This is Profile page</h1>
+        </div>
+
+    </div>
+    <script>
+        console.log("This is Profile page");
+    </script>
 </body>
 </html>
