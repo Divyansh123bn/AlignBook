@@ -32,5 +32,6 @@ public class ContactForm {
     private boolean favourite;
     private String websiteLink;
     private String linkedInLink;
-    private MultipartFile profileImage;
+    // will use custom annotaion to validate type, size, resolution of image 
+    private MultipartFile contactImage;
 }

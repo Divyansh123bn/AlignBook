@@ -34,6 +34,7 @@ public class Contact {
     private String websiteLink;
     private String linkedInLink;
     //many contact can have single user
+    private String cloudinaryImagePublicId;
     @ManyToOne
     private User user;
 
