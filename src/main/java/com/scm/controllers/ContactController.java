@@ -1,5 +1,6 @@
 package com.scm.controllers;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -87,5 +88,16 @@ public class ContactController {
         System.out.println(contactForm);
         session.setAttribute("message",Message.builder().content("Contact has been Added SuccessFully").type(MessageType.green).build());
         return "redirect:/user/contacts/add";
+    }
+
+    // view Contacts Handler
+    @RequestMapping()
+    public String viewContacts(Model model,Authentication authentication){
+        // Get All Contacts of the user
+        String username=Helper.getEmailOfLoggedInUser(authentication);
+        User user=userService.getUserByEmail(username);
+        List<Contact> contacts= contactService.getByUser(user);
+        model.addAttribute("contacts", contacts);
+        return "user/contacts";
     }
 }
