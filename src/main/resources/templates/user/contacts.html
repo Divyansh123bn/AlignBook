@@ -76,7 +76,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr data-th-object="${c}" data-th-Each="c: ${contacts}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                <tr data-th-object="${c}" data-th-Each="c: ${pageContact.getContent()}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                     <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
                                         <img onerror="this.src='https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg'"  class="w-10 h-10 rounded-full" data-th-src="@{*{picture}}" src="/docs/images/people/profile-picture-1.jpg" alt="Jese image">
                                         <div class="ps-3">
@@ -106,6 +106,22 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <!-- pagination component -->
+                         <div class="pagination_container p-4 text-center bg-white dark:bg-gray-800">
+                            <nav aria-label="Page navigation example">
+                                <ul class="inline-flex -space-x-px text-sm">
+                                  <li data-th-unless="${pageContact.first}">
+                                    <a data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${pageContact.number-1}}" href="#" class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</a>
+                                  </li>
+                                  <li data-th-Each="index : ${#numbers.sequence(0,pageContact.totalPages-1)}">
+                                    <a data-th-classappend="${index==pageContact.number ? 'bg-blue-100 dark:bg-gray-700' : 'bg-white dark:bg-gray-800'}" data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${index}}" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"><span data-th-text="${index+1}"></span></a>
+                                  </li>
+                                  <li data-th-unless="${pageContact.last}">
+                                    <a data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${pageContact.number+1}}" href="#" class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</a>
+                                  </li>
+                                </ul>
+                              </nav>
+                         </div>
                         <!-- Edit user modal -->
                         <div id="editUserModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 items-center justify-center hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
                             <div class="relative w-full max-w-2xl max-h-full">

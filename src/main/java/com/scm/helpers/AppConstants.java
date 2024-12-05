@@ -12,4 +12,6 @@ public class AppConstants {
 
     public static final String CONTACT_IMAGE_CROP="fill";
 
+    public static final int PAGE_SIZE=1;
+
 }
