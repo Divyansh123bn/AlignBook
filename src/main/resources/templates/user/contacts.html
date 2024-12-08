@@ -89,8 +89,11 @@
                                         <!-- Modal toggle -->
                                         <div>
                                             <!-- <a data-th-href="@{'/user/contacts/delete/'+*{id}}"><i class="fa-solid w-6 h-6 fa-trash"></i></a> -->
+                                             <!-- Button to Delete Contact -->
                                             <button data-th-onclick="deleteContact([[${c.id}]])"><i class="fa-solid w-6 h-6 fa-trash"></i></button>
-                                            <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                                            <!-- Button to Update Contact -->
+                                            <a data-th-href="@{'/user/contacts/view/'+*{id}}" href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
+                                            <!-- Button to View Contact -->
                                             <button 
                                             data-th-onclick="loadContactData([[${c.id}]])"
                                             onclick="openContactModal()"><i class="fa-solid w-6 h-6 fa-eye"></i></button>

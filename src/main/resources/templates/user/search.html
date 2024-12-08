@@ -86,9 +86,9 @@
                                 <td class="px-6 py-4">
                                     <!-- Modal toggle -->
                                     <div>
-                                        <a href=""><i class="fa-solid w-6 h-6 fa-trash"></i></a>
+                                        <button data-th-onclick="deleteContact([[${c.id}]])"><i class="fa-solid w-6 h-6 fa-trash"></i></button>
                                         <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                        <a href=""><i class="fa-solid w-6 h-6 fa-eye"></i></a>
+                                        <button data-th-onclick="loadContactData([[${c.id}]])" onclick="openContactModal()"><i class="fa-solid w-6 h-6 fa-eye"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -113,10 +113,12 @@
                     <!-- Edit user modal -->
                     <h1 data-th-if="${pageContact.totalElements<=0}" class="text-center text-3xl p-3 pb-4 font-semibold bg-white dark:bg-gray-800">No Contacts Found</h1>
                 </div>
+                <div data-th-replace="~{user/contact_modals::contact}"></div>
             </div>
         </div>
 
     </div>
+    <script data-th-src="@{'/js/contacts.js'}"></script>
     <script>
         console.log("This is Dashboard page");
     </script>
