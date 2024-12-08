@@ -21,6 +21,7 @@
                 <h2 class="text-xl text-center font-medium pt-2">List of all Contacts</h2>
                 <div class="contacts_container p-5">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <div data-th-replace="~{message::message}"></div>
                         <form data-th-object="${contactSearchForm}" data-th-action="@{'/user/contacts/search'}">
                             <div class=" p-8 space-x-3 flex items-center justify-start flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
                                 <!-- Select Box -->
@@ -87,9 +88,12 @@
                                     <td class="px-6 py-4">
                                         <!-- Modal toggle -->
                                         <div>
-                                            <a href=""><i class="fa-solid w-6 h-6 fa-trash"></i></a>
+                                            <!-- <a data-th-href="@{'/user/contacts/delete/'+*{id}}"><i class="fa-solid w-6 h-6 fa-trash"></i></a> -->
+                                            <button data-th-onclick="deleteContact([[${c.id}]])"><i class="fa-solid w-6 h-6 fa-trash"></i></button>
                                             <a href=""><i class="fa-solid w-6 h-6 fa-pen"></i></a>
-                                            <a href=""><i class="fa-solid w-6 h-6 fa-eye"></i></a>
+                                            <button 
+                                            data-th-onclick="loadContactData([[${c.id}]])"
+                                            onclick="openContactModal()"><i class="fa-solid w-6 h-6 fa-eye"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -175,10 +179,12 @@
                         </div>
                     </div>
                 </div>
+                <div data-th-replace="~{user/contact_modals::contact}"></div>
             </div>
         </div>
 
     </div>
+    <script data-th-src="@{'/js/contacts.js'}"></script>
     <script>
         console.log("This is Dashboard page");
     </script>
