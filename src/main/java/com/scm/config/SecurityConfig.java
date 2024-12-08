@@ -39,6 +39,9 @@ public class SecurityConfig {
     @Autowired
     private OAuthAuthenticationSuccessHandler oAuthAuthenticationSuccessHandler;
 
+    @Autowired
+    private AuthFailureHandler authFailureHandler;
+
     // Configurations of authentication for spring security
     @Bean
     public AuthenticationProvider authenticationProvider(){
@@ -68,6 +71,9 @@ public class SecurityConfig {
             formLogin.failureForwardUrl("/login?error=true");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
+
+
+            formLogin.failureHandler(authFailureHandler);
         });
 
         httpSecurity.csrf(AbstractHttpConfigurer::disable);

@@ -102,7 +102,8 @@ public class PageController {
         user.setAbout(userForm.getAbout());
         user.setEmail(userForm.getEmail());
         user.setPassword(userForm.getPassword());
-        user.setProfilePic("src\\main\\resources\\static\\images\\default.webp");
+        user.setEnabled(false);
+        user.setProfilePic("https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg");
         user.setPhoneNumber(userForm.getPhoneNumber());
 
         User savedUser=userService.saveUser(user);

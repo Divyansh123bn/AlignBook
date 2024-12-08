@@ -21,6 +21,7 @@
                     Invalid username and password.</div>
                 <div th:if="${param.logout}" class="font-bold text-green-500 mt-2 mb-1 text-center">
                     You have been logged out SuccessFully.</div>
+                <div data-th-replace="~{message::message}"></div>
     
                 <form 
                 class="space-y-4" 

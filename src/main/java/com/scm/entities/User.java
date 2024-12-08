@@ -51,7 +51,7 @@ public class User implements UserDetails{
     private String phoneNumber;
     //information
     @Getter(value = AccessLevel.NONE)
-    private boolean enabled=true;
+    private boolean enabled=false;
     private boolean emailVerified=false;
     private boolean phoneVerified=false;
     //SELF, GOOGLE, FACEBOOK, GITHUB, ETC
