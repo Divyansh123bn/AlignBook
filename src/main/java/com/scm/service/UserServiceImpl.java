@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.scm.entities.User;
 import com.scm.helpers.AppConstants;
+import com.scm.helpers.Helper;
 import com.scm.helpers.ResourceNotFoundException;
 import com.scm.repositories.UserRepo;
 
@@ -24,6 +25,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private EmailService emailService;
+
     private Logger logger=LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -34,7 +38,15 @@ public class UserServiceImpl implements UserService {
         //default things to be passed here ex. image
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoleList(List.of(AppConstants.ROLE_USER));
-        return userRepo.save(user);
+    
+        String emailToken=UUID.randomUUID().toString();
+
+        user.setEmailToken(emailToken);
+        User savedUser= userRepo.save(user);
+
+        String emailLink=Helper.getLinkforEmailVerification(emailToken);
+        emailService.sendEmail(savedUser.getEmail(),"AlignBook: Verify your Account to continue services: ", emailLink);
+        return savedUser;
     }
 
     @Override

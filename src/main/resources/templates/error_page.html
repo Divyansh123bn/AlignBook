@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verified SuccessFully</title>
+</head>
+<body>
+    <div id="content" class="text-center">
+        <h1 class="text-center text-2xl mb-10 text-red-600 font-bold pt-10">Email Not Verified Error Ocurred!</h1>
+        <a href="/login" class="text-center font-semibold px-5 rounded-lg py-2 bg-red-800 text-white">Login</a>
+    </div>
+    <script>
+        console.log("This is contact page");
+    </script>
+</body>
+</html>

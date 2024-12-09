@@ -25,7 +25,7 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
 
                 if(exception instanceof DisabledException){
                     HttpSession session=request.getSession();
-                    session.setAttribute("message",Message.builder().content("User is Disabled, Verify your Email to continue.").type(MessageType.red).build());
+                    session.setAttribute("message",Message.builder().content("User is Disabled, Verify your Email to continue. If mail not in Inbox Check in Spam").type(MessageType.red).build());
                     response.sendRedirect("/login");
                 }else{ 
                     response.sendRedirect("/login?error=true");
