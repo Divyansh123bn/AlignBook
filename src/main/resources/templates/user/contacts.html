@@ -22,33 +22,39 @@
                 <div class="contacts_container p-5">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <div data-th-replace="~{message::message}"></div>
-                        <form data-th-object="${contactSearchForm}" data-th-action="@{'/user/contacts/search'}">
-                            <div class=" p-8 space-x-3 flex items-center justify-start flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
-                                <!-- Select Box -->
-                                <div>       
-
-                                    <select data-th-field="*{field}" name="field" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option value="">Search Type</option>
-                                        <option value="name">name</option>
-                                        <option value="phoneNumber">phone</option>
-                                        <option value="email">email</option>
-                                    </select>
-                                    
-                                </div>
-                                <!-- Search box -->
-                                <label for="table-search" class="sr-only">Search</label>
-                                <div class="relative">
-                                    <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                                        </svg>
+                        <div class="flex flex-col md:flex-row justify-between bg-white dark:bg-gray-900 px-4 items-center">
+                            <form data-th-object="${contactSearchForm}" data-th-action="@{'/user/contacts/search'}">
+                                <div class=" p-8 space-x-3 flex items-center justify-start flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 ">
+                                    <!-- Select Box -->
+                                    <div>       
+    
+                                        <select data-th-field="*{field}" name="field" id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            <option value="">Search Type</option>
+                                            <option value="name">name</option>
+                                            <option value="phoneNumber">phone</option>
+                                            <option value="email">email</option>
+                                        </select>
+                                        
                                     </div>
-                                    <input data-th-field="*{keyword}" name="keyword" type="text" id="table-search-users" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
+                                    <!-- Search box -->
+                                    <label for="table-search" class="sr-only">Search</label>
+                                    <div class="relative">
+                                        <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                            </svg>
+                                        </div>
+                                        <input data-th-field="*{keyword}" name="keyword" type="text" id="table-search-users" class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for users">
+                                    </div>
+                                    <button type="submit" class="px-3 py-3 pt-2 pb-2 bg-gray-700 rounded-xl text-white font-semibold">Search</button>
                                 </div>
-                                <button type="submit" class="px-3 py-3 pt-2 pb-2 bg-gray-700 rounded-xl text-white font-semibold">Search</button>
+                            </form>
+                            <div>
+                                <button type="button" onclick="exportData()" class="px-3 py-3 pt-2 pb-2 bg-green-600 rounded-xl text-white font-semibold">Export</button>
                             </div>
-                        </form>
-                        <table data-th-if="${pageContact.totalElements>0}" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        </div>
+                       
+                        <table id="contact_table" data-th-if="${pageContact.totalElements>0}" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                                 <tr>
                                     <th scope="col" class="px-6 py-3">
@@ -187,9 +193,17 @@
         </div>
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
     <script data-th-src="@{'/js/contacts.js'}"></script>
     <script>
-        console.log("This is Dashboard page");
+        function exportData(){
+            TableToExcel.convert(document.getElementById("contact_table"), {
+                name: "contacts.xlsx",
+                sheet: {
+                  name: "Sheet 1"
+                }
+              });
+        }
     </script>
 </body>
 </html>
