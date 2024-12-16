@@ -116,9 +116,8 @@ We welcome contributions!
 
 ---
 
-## 👥 **Team & Credits**
-- **[Your Name]** - Full Stack Developer  
-*(Add team members if applicable.)*
+## 👥 **Developed By:**
+- **Divyansh Singh Solanki**   
 
 ---
 
@@ -136,8 +135,8 @@ This project is licensed under the MIT License.
 
 ## 🤝 **Connect**
 Have questions or suggestions? Reach out!  
-📧 Email: [your-email@example.com](mailto:your-email@example.com)  
-🌐 LinkedIn: [Your LinkedIn Profile](#)  
+📧 Email: [divyansh123bn@gmail.com](mailto:your-email@example.com)  
+🌐 LinkedIn: [Divyansh Singh Solanki](https://www.linkedin.com/in/divyansh-singh-solanki-123bn)  
 
 ---
 
