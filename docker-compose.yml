@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: divyansh123bn/scm:latest
+    env_file:
+      - .env
     ports:
       - "8080:8080"
     depends_on:
@@ -12,20 +12,20 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/scm
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: Divyansh123@
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL: "true"
-      CLOUDINARY_CLOUD_NAME: dpwypa0jw
-      CLOUDINARY_API_KEY: 116524367389914
-      CLOUDINARY_API_SECRET: OxGUhG0lTNc-jWjsY2NT7GibOnM
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_API_SECRET: ${CLOUDINARY_API_SECRET}
       SPRING_MAIL_HOST: smtp.gmail.com
       SPRING_MAIL_PORT: 587
-      SPRING_MAIL_USERNAME: emaileasetry@gmail.com
-      SPRING_MAIL_PASSWORD: ijipfhwotdehqwgb
-      GOOGLE_CLIENT_ID: 313430345966-v3h8klmla70ktrp8motsv238i0rg907d.apps.googleusercontent.com
-      GOOGLE_CLIENT_SECRET: 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
-      GITHUB_CLIENT_ID: Iv23liZ19ZcfjlgLKa8g
-      GITHUB_CLIENT_SECRET: 9aaae32528f3af2340cfcf8d91f7b520ec8457f5
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
+      GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
 
   db:
     image: mysql:8.0
@@ -34,7 +34,7 @@ services:
     ports:
       - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: Divyansh123@
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: scm
     volumes:
       - db_data:/var/lib/mysql
