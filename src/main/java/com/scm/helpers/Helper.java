@@ -38,7 +38,7 @@ public class Helper {
     }
 
     public static String getLinkforEmailVerification(String emailToken){
-        String link="http://localhost:8080/auth/verify-email?token="+emailToken;
+        String link="https://alignbook-sa2x.onrender.com/auth/verify-email?token="+emailToken;
 
         return link;
     }
