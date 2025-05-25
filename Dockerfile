@@ -13,13 +13,15 @@
 # # Run the Spring Boot application
 # CMD ["java", "-jar", "scm.jar"]
 
-
+# Stage 1: Build the application using Maven and JDK 21
 FROM maven:3.8.5-openjdk-21 AS build
+WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
-FROM openjdk:21.0.1-jdk-slim
-
-COPY --from=build /target/scm-0.0.1-SNAPSHOT.jar scm.jar 
+# Stage 2: Use a slim OpenJDK 21 image to run the app
+FROM openjdk:21-slim
+WORKDIR /app
+COPY --from=build /app/target/scm-0.0.1-SNAPSHOT.jar scm.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","scm.jar"]
+ENTRYPOINT ["java", "-jar", "scm.jar"]
