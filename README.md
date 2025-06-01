@@ -55,7 +55,7 @@ Effortlessly manage your contacts with **AlignBook**—a powerful, intuitive, an
 - Java JDK 11+  
 - Node.js  
 - Maven  
-- MySQL Database (or another relational database)  
+- MySQL Database
 
 ### **Setup Instructions**
 1. Clone the repository:
